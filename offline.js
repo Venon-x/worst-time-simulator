@@ -1,5 +1,5 @@
 ﻿{
-	"version": 1660065308,
+	"version": 1663686229,
 	"fileList": [
 		"data.js",
 		"c2runtime.js",
@@ -87,9 +87,9 @@
 		"media/gasterblast2.ogg",
 		"media/logo appearing.ogg",
 		"media/sansdamaged.ogg",
-		"media/hard mode text.ogg",
-		"media/the end of all judgment.ogg",
-		"media/megalovania hardmode.ogg",
+		"media/hard_mode_text.ogg",
+		"media/the_end_of_all_judgment.ogg",
+		"media/megalovania_hardmode.ogg",
 		"icon-16.png",
 		"icon-32.png",
 		"icon-114.png",
