@@ -1,5 +1,5 @@
 ﻿{
-	"version": 1663686634,
+	"version": 1678807247,
 	"fileList": [
 		"data.js",
 		"c2runtime.js",
@@ -24,6 +24,7 @@
 		"images/combatzoneunclipper.png",
 		"images/menu-sheet0.png",
 		"images/hpbarhide.png",
+		"images/confirmation-sheet0.png",
 		"images/sanshead-sheet0.png",
 		"images/sansbody-sheet0.png",
 		"images/sansbody-sheet1.png",
