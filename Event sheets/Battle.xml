@@ -399,7 +399,7 @@
                                     <param id="0" name="Tag">&quot;Music&quot;</param>
                                 </action>
                                 <action id="0" name="Play" sid="504699679720181" type="Audio">
-                                    <param id="0" name="Audio file">The_End_Of_All_Judgment</param>
+                                    <param id="0" name="Audio file">The_End_Of_All_Judgement</param>
                                     <param id="2" name="Loop">1</param>
                                     <param id="3" name="Volume">0</param>
                                     <param id="1" name="Tag (optional)">&quot;Music&quot;</param>
@@ -2332,7 +2332,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Play" sid="383705449919107" type="Audio">
-                                            <param id="0" name="Audio file">The_End_Of_All_Judgment</param>
+                                            <param id="0" name="Audio file">The_End_Of_All_Judgement</param>
                                             <param id="2" name="Loop">1</param>
                                             <param id="3" name="Volume">0</param>
                                             <param id="1" name="Tag (optional)">&quot;Music&quot;</param>
@@ -2496,7 +2496,7 @@
                 <condition id="-14" name="Compare variable" sid="106256746934581" type="System">
                     <param id="0" name="Variable">Mute_Music</param>
                     <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">1</param>
+                    <param id="2" name="Value">0</param>
                 </condition>
             </conditions>
             <actions>
