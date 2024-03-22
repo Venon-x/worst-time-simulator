@@ -3,8 +3,8 @@
     <!--This is a UI state file - its content describes the user interface settings when the event sheet was last open.
 It is entirely optional and the project will load without it.  If you are placing the project under source control,
 you probably do not want to add any .uistate.xml files to the repository.-->
-    <show-addaction-links>1</show-addaction-links>
-    <scroll-pos>8174</scroll-pos>
+    <show-addaction-links>0</show-addaction-links>
+    <scroll-pos>2550</scroll-pos>
     <conditions-column>360</conditions-column>
     <actions-namecolumn>112</actions-namecolumn>
     <condition-namecolumns>
@@ -27,7 +27,6 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     <events>
         <event collapsed="1" sid="5873472645475589" />
         <event collapsed="1" sid="3247046059526553" />
-        <event collapsed="1" sid="6451037740410459" />
         <event collapsed="1" sid="6115443361825044" />
         <event collapsed="1" sid="4452238531787863" />
         <event collapsed="1" sid="5367209213685925" />

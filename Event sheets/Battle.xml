@@ -3,7 +3,6 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Battle</name>
     <events>
-        <variable constant="0" name="HasNoHit" sid="358619718004740" static="0" type="number">1</variable>
         <include>InputManagement</include>
         <include>Fonts</include>
         <include>Items</include>
@@ -114,7 +113,7 @@
                 <event-block sid="378692317716643">
                     <conditions>
                         <condition id="-14" name="Compare variable" sid="306879967335605" type="System">
-                            <param id="0" name="Variable">Dev_Mode</param>
+                            <param id="0" name="Variable">S_Dev_Mode</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">1</param>
                         </condition>
@@ -165,11 +164,7 @@
                 </event-block>
                 <event-block sid="4308489914797654">
                     <conditions>
-                        <condition id="-14" name="Compare variable" sid="5946392661334711" type="System">
-                            <param id="0" name="Variable">SimulatorMode</param>
-                            <param id="1" name="Comparison">1</param>
-                            <param id="2" name="Value">MODE_NORMAL</param>
-                        </condition>
+                        <condition id="-22" name="Else" sid="5946392661334711" type="System" />
                     </conditions>
                     <actions>
                         <action id="0" name="Call function" sid="554641272059113" type="Function">
@@ -277,7 +272,7 @@
                     <param id="0" name="Key">86</param>
                 </condition>
                 <condition id="-14" name="Compare variable" sid="891732642172894" type="System">
-                    <param id="0" name="Variable">Dev_Mode</param>
+                    <param id="0" name="Variable">S_Dev_Mode</param>
                     <param id="1" name="Comparison">0</param>
                     <param id="2" name="Value">1</param>
                 </condition>
@@ -326,19 +321,44 @@
                 <event-block sid="318398927476199">
                     <conditions>
                         <condition id="-14" name="Compare variable" sid="945447472629706" type="System">
-                            <param id="0" name="Variable">Mute_Music</param>
+                            <param id="0" name="Variable">S_Mute_Music</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">0</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="0" name="Play" sid="265595085090147" type="Audio">
-                            <param id="0" name="Audio file">Megalovania_HardMode</param>
-                            <param id="2" name="Loop">1</param>
-                            <param id="3" name="Volume">0</param>
-                            <param id="1" name="Tag (optional)">&quot;Music&quot;</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="521997912224072">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="709521474690875" type="SansLegs">
+                                    <param id="0" name="Instance variable">HitAttempts</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">PHASE2START</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Play" sid="265595085090147" type="Audio">
+                                    <param id="0" name="Audio file">Megalovania_HardMode</param>
+                                    <param id="2" name="Loop">1</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;Music&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="670501210560051">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="652912582603653" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Play" sid="426900758983717" type="Audio">
+                                    <param id="0" name="Audio file">The_End_Of_All_Judgement</param>
+                                    <param id="2" name="Loop">1</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;Music&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>
@@ -376,20 +396,32 @@
                             <param id="0" name="Name">&quot;SansAnimation&quot;</param>
                             <param id="1" name="Parameter {n}">&quot;Tired&quot;</param>
                         </action>
-                        <action id="-29" name="Set layout effect enabled" sid="986545675225631" type="System">
-                            <param id="0" name="Mode">1</param>
-                            <param id="1" name="Effect">&quot;RGBEffect&quot;</param>
-                        </action>
-                        <action id="-29" name="Set layout effect enabled" sid="684413982987930" type="System">
-                            <param id="0" name="Mode">1</param>
-                            <param id="1" name="Effect">&quot;ScreenTear&quot;</param>
-                        </action>
                     </actions>
                     <sub-events>
+                        <event-block sid="922081711099166">
+                            <conditions>
+                                <condition id="-27" name="Effects are supported" sid="724848494134763" type="System" />
+                                <condition id="-14" name="Compare variable" sid="484414506089149" type="System">
+                                    <param id="0" name="Variable">S_Disable_Post_Processing</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-29" name="Set layout effect enabled" sid="986545675225631" type="System">
+                                    <param id="0" name="Mode">1</param>
+                                    <param id="1" name="Effect">&quot;RGBEffect&quot;</param>
+                                </action>
+                                <action id="-29" name="Set layout effect enabled" sid="684413982987930" type="System">
+                                    <param id="0" name="Mode">1</param>
+                                    <param id="1" name="Effect">&quot;ScreenTear&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
                         <event-block sid="121202383620300">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="615888854721091" type="System">
-                                    <param id="0" name="Variable">Mute_Music</param>
+                                    <param id="0" name="Variable">S_Mute_Music</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -786,7 +818,7 @@
                 <event-block sid="212531518099885">
                     <conditions>
                         <condition id="-14" name="Compare variable" sid="738761308430141" type="System">
-                            <param id="0" name="Variable">HardMode</param>
+                            <param id="0" name="Variable">S_HardMode</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">0</param>
                         </condition>
@@ -839,7 +871,7 @@
                 <event-block sid="517358643300339">
                     <conditions>
                         <condition id="-14" name="Compare variable" sid="471664049771128" type="System">
-                            <param id="0" name="Variable">HardMode</param>
+                            <param id="0" name="Variable">S_HardMode</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">1</param>
                         </condition>
@@ -867,34 +899,65 @@
                     </conditions>
                     <actions>
                         <action id="-16" name="Set opacity" sid="693084807238622" type="PlayerHeart">
-                            <param id="0" name="Opacity">PlayerHeart.Opacity + 1.5</param>
+                            <param id="0" name="Opacity">PlayerHeart.Opacity + 1</param>
                         </action>
-                        <action id="-15" name="Set visible" sid="233207536312926" type="PlayerHeartEffects">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="466132163762783">
+                    <conditions>
+                        <condition id="-10" name="Compare opacity" sid="223838561266949" type="PlayerHeartEffects">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Opacity">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
                         <action id="-16" name="Set opacity" sid="557049596425891" type="PlayerHeartEffects">
                             <param id="0" name="Opacity">PlayerHeartEffects.Opacity - 1</param>
                         </action>
-                        <action id="-11" name="Add to" sid="199956339383517" type="PlayerHeartEffects">
+                        <action id="-11" name="Add to" sid="315794954710066" type="PlayerHeartEffects">
                             <param id="0" name="Instance variable">Scale</param>
                             <param id="1" name="Value">0.02</param>
                         </action>
-                        <action id="9" name="Set scale" sid="834269912765486" type="PlayerHeartEffects">
+                        <action id="9" name="Set scale" sid="292752081876676" type="PlayerHeartEffects">
                             <param id="0" name="Scale">PlayerHeartEffects.Scale</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="692573633940959">
-                    <conditions>
-                        <condition id="-9" inverted="1" name="Is visible" sid="650216839017088" type="PlayerHeart" />
-                    </conditions>
-                    <actions>
-                        <action id="-15" name="Set visible" sid="857502305425765" type="PlayerHeartEffects">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
-                    </actions>
-                </event-block>
             </sub-events>
+        </event-block>
+        <event-block sid="839630624399948">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="889689935165179" type="System" />
+            </conditions>
+            <actions>
+                <action id="-4" name="Set position to another object" sid="832553064696949" type="PlayerHeartEffects">
+                    <param id="0" name="Object">PlayerHeart</param>
+                    <param id="1" name="Image point (optional)">0</param>
+                </action>
+                <action id="-8" name="Set angle" sid="770171128339233" type="PlayerHeartEffects">
+                    <param id="0" name="Angle">PlayerHeart.Angle</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="835705599453178">
+            <conditions>
+                <condition id="-9" name="Is visible" sid="252391217926252" type="PlayerHeart" />
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="608516498374805" type="PlayerHeartEffects">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="891399576330248">
+            <conditions>
+                <condition id="-22" name="Else" sid="962163674750119" type="System" />
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="992352430672484" type="PlayerHeartEffects">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
         </event-block>
         <event-block sid="9557576745718824">
             <conditions>
@@ -977,7 +1040,7 @@
                                         <event-block sid="167011952775474">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="959116904037274" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">0</param>
                                                 </condition>
@@ -992,7 +1055,7 @@
                                         <event-block sid="379240306768839">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="248877074568927" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">1</param>
                                                 </condition>
@@ -1035,7 +1098,7 @@
                                         <event-block sid="185900951258095">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="216199941224389" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">0</param>
                                                 </condition>
@@ -1050,7 +1113,7 @@
                                         <event-block sid="116227563337409">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="636453611287078" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">1</param>
                                                 </condition>
@@ -1093,7 +1156,7 @@
                                         <event-block sid="853187779056893">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="754444973179006" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">0</param>
                                                 </condition>
@@ -1108,7 +1171,7 @@
                                         <event-block sid="773160471879345">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="873903213160339" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">1</param>
                                                 </condition>
@@ -1151,7 +1214,7 @@
                                         <event-block sid="417182349522135">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="232545233801293" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">0</param>
                                                 </condition>
@@ -1166,7 +1229,7 @@
                                         <event-block sid="765284268007433">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="737918280877738" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">1</param>
                                                 </condition>
@@ -1209,7 +1272,7 @@
                                         <event-block sid="107956884889891">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="403552508475965" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">0</param>
                                                 </condition>
@@ -1224,7 +1287,7 @@
                                         <event-block sid="202620791946436">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="213591032436608" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">1</param>
                                                 </condition>
@@ -1267,7 +1330,7 @@
                                         <event-block sid="868090740402582">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="783823659397647" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">0</param>
                                                 </condition>
@@ -1282,7 +1345,7 @@
                                         <event-block sid="910308277801066">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="811538483836315" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">1</param>
                                                 </condition>
@@ -1325,7 +1388,7 @@
                                         <event-block sid="844414145120935">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="771420611862749" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">0</param>
                                                 </condition>
@@ -1340,7 +1403,7 @@
                                         <event-block sid="190281844157607">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="590273950057026" type="System">
-                                                    <param id="0" name="Variable">HardMode</param>
+                                                    <param id="0" name="Variable">S_HardMode</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">1</param>
                                                 </condition>
@@ -2325,17 +2388,15 @@
                                             <param id="0" name="Tag">&quot;Music&quot;</param>
                                         </condition>
                                         <condition id="-14" name="Compare variable" sid="683136332728596" type="System">
-                                            <param id="0" name="Variable">Mute_Music</param>
+                                            <param id="0" name="Variable">S_Mute_Music</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">0</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Play" sid="383705449919107" type="Audio">
-                                            <param id="0" name="Audio file">The_End_Of_All_Judgement</param>
-                                            <param id="2" name="Loop">1</param>
-                                            <param id="3" name="Volume">0</param>
-                                            <param id="1" name="Tag (optional)">&quot;Music&quot;</param>
+                                        <action id="0" name="Call function" sid="990623821349128" type="Function">
+                                            <param id="0" name="Name">&quot;PlayMusic&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -2494,7 +2555,7 @@
                     <param id="0" name="Name">&quot;Music&quot;</param>
                 </condition>
                 <condition id="-14" name="Compare variable" sid="106256746934581" type="System">
-                    <param id="0" name="Variable">Mute_Music</param>
+                    <param id="0" name="Variable">S_Mute_Music</param>
                     <param id="1" name="Comparison">0</param>
                     <param id="2" name="Value">0</param>
                 </condition>
@@ -4690,20 +4751,6 @@
         </event-group>
         <event-group description="" sid="6451037740410459" title="PlayerMovement">
             <sub-events>
-                <event-block sid="961745319746037">
-                    <conditions>
-                        <condition id="-1" name="Every tick" sid="979318754136148" type="System" />
-                    </conditions>
-                    <actions>
-                        <action id="-4" name="Set position to another object" sid="407172580423264" type="PlayerHeartEffects">
-                            <param id="0" name="Object">PlayerHeart</param>
-                            <param id="1" name="Image point (optional)">0</param>
-                        </action>
-                        <action id="-8" name="Set angle" sid="474511777686814" type="PlayerHeartEffects">
-                            <param id="0" name="Angle">PlayerHeart.Angle</param>
-                        </action>
-                    </actions>
-                </event-block>
                 <variable constant="1" name="HEART_JUMP_STRENGTH" sid="9477825447959367" static="0" type="number">180</variable>
                 <variable constant="1" name="HEART_JUMPHOLD_CUTOFF" sid="7658838381136613" static="0" type="number">30</variable>
                 <variable constant="0" name="HeartSpeed" sid="1915279441809349" static="0" type="number">150</variable>
@@ -4730,12 +4777,12 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-16" name="Set opacity" sid="749609459865731" type="PlayerHeartEffects">
-                                    <param id="0" name="Opacity">50</param>
-                                </action>
-                                <action id="-10" name="Set value" sid="793417161956275" type="PlayerHeartEffects">
+                                <action id="-10" name="Set value" sid="353813159631588" type="PlayerHeartEffects">
                                     <param id="0" name="Instance variable">Scale</param>
                                     <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-16" name="Set opacity" sid="852234145773220" type="PlayerHeartEffects">
+                                    <param id="0" name="Opacity">50</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -4753,12 +4800,12 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-16" name="Set opacity" sid="677745382613309" type="PlayerHeartEffects">
-                                    <param id="0" name="Opacity">50</param>
-                                </action>
-                                <action id="-10" name="Set value" sid="341002283760624" type="PlayerHeartEffects">
+                                <action id="-10" name="Set value" sid="135550762612983" type="PlayerHeartEffects">
                                     <param id="0" name="Instance variable">Scale</param>
                                     <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-16" name="Set opacity" sid="749609459865731" type="PlayerHeartEffects">
+                                    <param id="0" name="Opacity">50</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -12902,7 +12949,7 @@
                                             <param id="2" name="Value">0</param>
                                         </condition>
                                         <condition id="-14" name="Compare variable" sid="918184265765065" type="System">
-                                            <param id="0" name="Variable">NoDeath</param>
+                                            <param id="0" name="Variable">S_NoDeath</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">0</param>
                                         </condition>
@@ -12930,7 +12977,7 @@
                                             <param id="2" name="Value">0</param>
                                         </condition>
                                         <condition id="-14" name="Compare variable" sid="117684575727617" type="System">
-                                            <param id="0" name="Variable">NoDeath</param>
+                                            <param id="0" name="Variable">S_NoDeath</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">0</param>
                                         </condition>
@@ -13822,7 +13869,7 @@
                             <param id="2" name="Value">0</param>
                         </condition>
                         <condition id="-14" name="Compare variable" sid="972108554435635" type="System">
-                            <param id="0" name="Variable">NoDeath</param>
+                            <param id="0" name="Variable">S_NoDeath</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">0</param>
                         </condition>
@@ -13875,7 +13922,7 @@
                         <event-block sid="807998359280781">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="424642387709619" type="System">
-                                    <param id="0" name="Variable">InstantDeath</param>
+                                    <param id="0" name="Variable">S_InstantDeath</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -13917,7 +13964,7 @@
                                 <event-block sid="158823543047707">
                                     <conditions>
                                         <condition id="-14" name="Compare variable" sid="358003732535290" type="System">
-                                            <param id="0" name="Variable">InstantRetry</param>
+                                            <param id="0" name="Variable">S_InstantRetry</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">0</param>
                                         </condition>
@@ -13931,7 +13978,7 @@
                                 <event-block sid="794332713506839">
                                     <conditions>
                                         <condition id="-14" name="Compare variable" sid="481844706342601" type="System">
-                                            <param id="0" name="Variable">InstantRetry</param>
+                                            <param id="0" name="Variable">S_InstantRetry</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">1</param>
                                         </condition>
@@ -13957,7 +14004,7 @@
                         <event-block sid="838504214337328">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="571243684123002" type="System">
-                                    <param id="0" name="Variable">InstantDeath</param>
+                                    <param id="0" name="Variable">S_InstantDeath</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">1</param>
                                 </condition>
@@ -13991,7 +14038,7 @@
                                 <event-block sid="309225095671320">
                                     <conditions>
                                         <condition id="-14" name="Compare variable" sid="193660792615848" type="System">
-                                            <param id="0" name="Variable">InstantRetry</param>
+                                            <param id="0" name="Variable">S_InstantRetry</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">0</param>
                                         </condition>
@@ -14005,7 +14052,7 @@
                                 <event-block sid="149917752235102">
                                     <conditions>
                                         <condition id="-14" name="Compare variable" sid="386496688247513" type="System">
-                                            <param id="0" name="Variable">InstantRetry</param>
+                                            <param id="0" name="Variable">S_InstantRetry</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">1</param>
                                         </condition>
@@ -14036,7 +14083,7 @@
                                     <param id="2" name="End index">6</param>
                                 </condition>
                                 <condition id="-14" name="Compare variable" sid="836075452579424" type="System">
-                                    <param id="0" name="Variable">InstantDeath</param>
+                                    <param id="0" name="Variable">S_InstantDeath</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -14107,7 +14154,7 @@
                         <event-block sid="873222164341329">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="664241641618426" type="System">
-                                    <param id="0" name="Variable">HpHide</param>
+                                    <param id="0" name="Variable">S_HpHide</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -14141,6 +14188,11 @@
                     <conditions>
                         <condition id="0" name="On function" sid="824600440962280" type="Function">
                             <param id="0" name="Name">&quot;MaxHp&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="132333858418894" type="System">
+                            <param id="0" name="Variable">S_No_Hit</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -14203,7 +14255,7 @@
                         <event-block sid="305625008881600">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="822957072987521" type="System">
-                                    <param id="0" name="Variable">HpHide</param>
+                                    <param id="0" name="Variable">S_HpHide</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">1</param>
                                 </condition>
@@ -14265,7 +14317,7 @@
                         <event-block sid="527941544845484">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="461223048018936" type="System">
-                                    <param id="0" name="Variable">HpHide</param>
+                                    <param id="0" name="Variable">S_HpHide</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -14337,7 +14389,7 @@
                         <event-block sid="920511880848930">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="569051659004338" type="System">
-                                    <param id="0" name="Variable">HpHide</param>
+                                    <param id="0" name="Variable">S_HpHide</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">1</param>
                                 </condition>
@@ -14586,7 +14638,95 @@
                                     <param id="0" name="Variable">Failed</param>
                                     <param id="1" name="Value">0</param>
                                 </action>
+                                <action id="-35" name="Set layer transparent" sid="857920276288769" type="System">
+                                    <param id="0" name="Layer">&quot;Overlay&quot;</param>
+                                    <param id="1" name="Mode">1</param>
+                                </action>
+                                <action id="0" name="Call function" sid="547722237087016" type="Function">
+                                    <param id="0" name="Name">&quot;HeartMode&quot;</param>
+                                    <param id="1" name="Parameter {n}">0</param>
+                                </action>
                             </actions>
+                            <sub-events>
+                                <event-block sid="444753635571225">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="921499451414806" type="SansLegs">
+                                            <param id="0" name="Instance variable">NextAttack</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Value">PHASE2START</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="386757568251567" type="Function">
+                                            <param id="0" name="Name">&quot;SansAnimation&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;Idle&quot;</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="313563420576665" type="Function">
+                                            <param id="0" name="Name">&quot;SansHead&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;Default&quot;</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="645503447807751" type="Function">
+                                            <param id="0" name="Name">&quot;SansTorso&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;Default&quot;</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="344037216690275">
+                                            <conditions>
+                                                <condition id="5" inverted="1" name="Is tag playing" sid="524929930577874" type="Audio">
+                                                    <param id="0" name="Tag">&quot;Music&quot;</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Call function" sid="651029987182247" type="Function">
+                                                    <param id="0" name="Name">&quot;PlayMusic&quot;</param>
+                                                    <param id="1" name="Parameter {n}"></param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="636064565449159">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="852693416782385" type="SansLegs">
+                                            <param id="0" name="Instance variable">HitAttempts</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Value">PHASE2START +1 </param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="266353312318034" type="SansHead">
+                                            <param id="0" name="Animation">&quot;GoneMad&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="164731869670632" type="SansTorso">
+                                            <param id="0" name="Animation">&quot;GoneMad&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="852231667770540">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="853184327343365" type="System">
+                                                    <param id="0" name="Variable">S_Disable_Post_Processing</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-29" name="Set layout effect enabled" sid="591302057501504" type="System">
+                                                    <param id="0" name="Mode">1</param>
+                                                    <param id="1" name="Effect">&quot;RGBEffect&quot;</param>
+                                                </action>
+                                                <action id="-29" name="Set layout effect enabled" sid="149465209249627" type="System">
+                                                    <param id="0" name="Mode">1</param>
+                                                    <param id="1" name="Effect">&quot;ScreenTear&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <event-block sid="344554124359375">
                             <conditions>
@@ -14653,13 +14793,13 @@
                                                 <condition id="-14" name="Compare variable" sid="529322749066441" type="System">
                                                     <param id="0" name="Variable">PracticeAttack</param>
                                                     <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Value">14</param>
+                                                    <param id="2" name="Value">7</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
                                                 <action id="-10" name="Set value" sid="976393462683652" type="SansLegs">
                                                     <param id="0" name="Instance variable">HitAttempts</param>
-                                                    <param id="1" name="Value">14</param>
+                                                    <param id="1" name="Value">PHASE2START + 1</param>
                                                 </action>
                                                 <action id="-9" name="Set value" sid="599424083330358" type="System">
                                                     <param id="0" name="Variable">PracticeAttack</param>
@@ -14671,19 +14811,19 @@
                                             <conditions>
                                                 <condition id="-7" name="Compare instance variable" sid="736006944728803" type="SansLegs">
                                                     <param id="0" name="Instance variable">HitAttempts</param>
-                                                    <param id="1" name="Comparison">4</param>
+                                                    <param id="1" name="Comparison">5</param>
                                                     <param id="2" name="Value">PHASE2START</param>
                                                 </condition>
                                                 <condition id="-14" name="Compare variable" sid="693018060570776" type="System">
                                                     <param id="0" name="Variable">PracticeAttack</param>
                                                     <param id="1" name="Comparison">4</param>
-                                                    <param id="2" name="Value">9</param>
+                                                    <param id="2" name="Value">3</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
                                                 <action id="-9" name="Set value" sid="153387310587038" type="System">
                                                     <param id="0" name="Variable">PracticeAttack</param>
-                                                    <param id="1" name="Value">9</param>
+                                                    <param id="1" name="Value">3</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -15544,6 +15684,11 @@
                                         <event-block sid="294669226099345">
                                             <conditions>
                                                 <condition id="-27" name="Effects are supported" sid="145251373022660" type="System" />
+                                                <condition id="-14" name="Compare variable" sid="190469921931695" type="System">
+                                                    <param id="0" name="Variable">S_Disable_Post_Processing</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
                                             </conditions>
                                             <actions>
                                                 <action id="-29" name="Set layout effect enabled" sid="936412525156201" type="System">
@@ -15559,7 +15704,7 @@
                                         <event-block sid="849212776672085">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="231954688754592" type="System">
-                                                    <param id="0" name="Variable">HealPhaseTransition</param>
+                                                    <param id="0" name="Variable">S_HealPhaseTransition</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">1</param>
                                                 </condition>
@@ -16682,7 +16827,7 @@
                                                     <param id="2" name="Value">MaxHP</param>
                                                 </condition>
                                                 <condition id="-14" name="Compare variable" sid="760301076424780" type="System">
-                                                    <param id="0" name="Variable">HealPhaseTransition</param>
+                                                    <param id="0" name="Variable">S_HealPhaseTransition</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">0</param>
                                                 </condition>
@@ -16725,7 +16870,7 @@
                                                     <param id="2" name="Value">MaxHP</param>
                                                 </condition>
                                                 <condition id="-14" name="Compare variable" sid="584203151928388" type="System">
-                                                    <param id="0" name="Variable">HealPhaseTransition</param>
+                                                    <param id="0" name="Variable">S_HealPhaseTransition</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">1</param>
                                                 </condition>

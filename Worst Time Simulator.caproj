@@ -1532,7 +1532,7 @@
         <object-type name="PlayerHeartEffects" sid="169803560553760">
             <plugin id="Sprite" />
             <instance-variables>
-                <instance-variable name="Scale" sid="540170302926888" type="number" />
+                <instance-variable name="Scale" sid="538087993603554" type="number" />
             </instance-variables>
             <effects>
                 <effect-type name="Tint">

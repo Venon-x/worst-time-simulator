@@ -3,15 +3,6 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>MainMenu</name>
     <events>
-        <variable constant="0" name="HpHide" sid="191152617239355" static="0" type="number">0</variable>
-        <variable constant="0" name="InstantRetry" sid="146891859043440" static="0" type="number">0</variable>
-        <variable constant="0" name="HardMode" sid="433672417739524" static="0" type="number">0</variable>
-        <variable constant="0" name="HealPhaseTransition" sid="330632785011488" static="0" type="number">0</variable>
-        <variable constant="0" name="NoDeath" sid="851190697836478" static="0" type="number">0</variable>
-        <variable constant="0" name="PhaseSelect" sid="345419778356496" static="0" type="number">0</variable>
-        <variable constant="0" name="InstantDeath" sid="192300545486393" static="0" type="number">0</variable>
-        <variable constant="0" name="Mute_Music" sid="413545279834873" static="0" type="number">0</variable>
-        <variable constant="0" name="Dev_Mode" sid="531878383243575" static="0" type="number">0</variable>
         <include>InputManagement</include>
         <include>Fonts</include>
         <include>RPGText</include>
@@ -52,6 +43,42 @@
                     <param id="1" name="Value">92</param>
                 </action>
             </actions>
+            <sub-events>
+                <event-block sid="159222230090680">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="681720635236581" type="System">
+                            <param id="0" name="Variable">S_Disable_Post_Processing</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-29" name="Set layout effect enabled" sid="656108543244246" type="System">
+                            <param id="0" name="Mode">1</param>
+                            <param id="1" name="Effect">&quot;GlowHorizontal&quot;</param>
+                        </action>
+                        <action id="-29" name="Set layout effect enabled" sid="734880069797475" type="System">
+                            <param id="0" name="Mode">1</param>
+                            <param id="1" name="Effect">&quot;GlowVertical&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="434956857425545">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="640206127498230" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-29" name="Set layout effect enabled" sid="189035572934365" type="System">
+                            <param id="0" name="Mode">0</param>
+                            <param id="1" name="Effect">&quot;GlowHorizontal&quot;</param>
+                        </action>
+                        <action id="-29" name="Set layout effect enabled" sid="332308670889345" type="System">
+                            <param id="0" name="Mode">0</param>
+                            <param id="1" name="Effect">&quot;GlowVertical&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="566182451496929">
             <conditions>
@@ -717,7 +744,7 @@
                         <event-block sid="848775996718030">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="525796602006455" type="System">
-                                    <param id="0" name="Variable">HardMode</param>
+                                    <param id="0" name="Variable">S_HardMode</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -732,7 +759,7 @@
                         <event-block sid="443941393505365">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="931184165402470" type="System">
-                                    <param id="0" name="Variable">HardMode</param>
+                                    <param id="0" name="Variable">S_HardMode</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">1</param>
                                 </condition>
@@ -741,6 +768,15 @@
                                 <action id="0" name="Call function" sid="551001076919176" type="Function">
                                     <param id="0" name="Name">&quot;CreateMenuItem&quot;</param>
                                     <param id="1" name="Parameter {n}">0{###}192{###}128{###}1{###}&quot;Phase 2&quot;{###}&quot;&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="900480921222792">
+                            <conditions />
+                            <actions>
+                                <action id="0" name="Call function" sid="202135577292027" type="Function">
+                                    <param id="0" name="Name">&quot;CreateMenuItem&quot;</param>
+                                    <param id="1" name="Parameter {n}">0{###}192{###}160{###}2{###}&quot;Practice Mode&quot;{###}&quot;MenuModePractice&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -812,7 +848,7 @@
                         <event-block sid="404234766448830">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="458562333304416" type="System">
-                                    <param id="0" name="Variable">Mute_Music</param>
+                                    <param id="0" name="Variable">S_Mute_Music</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -827,7 +863,7 @@
                         <event-block sid="699194522446806">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="323391063881574" type="System">
-                                    <param id="0" name="Variable">Mute_Music</param>
+                                    <param id="0" name="Variable">S_Mute_Music</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">1</param>
                                 </condition>
@@ -894,7 +930,7 @@
                         <event-block sid="600278528930982">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="359750195916480" type="System">
-                                    <param id="0" name="Variable">InstantDeath</param>
+                                    <param id="0" name="Variable">S_InstantDeath</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -909,7 +945,7 @@
                         <event-block sid="444418710538199">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="451560660601687" type="System">
-                                    <param id="0" name="Variable">InstantDeath</param>
+                                    <param id="0" name="Variable">S_InstantDeath</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">1</param>
                                 </condition>
@@ -976,7 +1012,7 @@
                         <event-block sid="310203595018803">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="756905895460767" type="System">
-                                    <param id="0" name="Variable">InstantRetry</param>
+                                    <param id="0" name="Variable">S_InstantRetry</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -991,7 +1027,7 @@
                         <event-block sid="989379052973391">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="701306543024611" type="System">
-                                    <param id="0" name="Variable">InstantRetry</param>
+                                    <param id="0" name="Variable">S_InstantRetry</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">1</param>
                                 </condition>
@@ -1055,10 +1091,92 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <event-block sid="557756297078885">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="155896412367586" type="System">
+                                    <param id="0" name="Variable">S_Disable_Post_Processing</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="537157403778574" type="Function">
+                                    <param id="0" name="Name">&quot;CreateMenuItem&quot;</param>
+                                    <param id="1" name="Parameter {n}">0{###}192{###}224{###}4{###}&quot;Disable Post Processing&quot;{###}&quot;Disable Post Processing&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="169761556007235">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="883633873973431" type="System">
+                                    <param id="0" name="Variable">S_Disable_Post_Processing</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="249496490242024" type="System">
+                                    <param id="0" name="Object to create">MenuItem</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">192</param>
+                                    <param id="3" name="Y">224</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="138343305458590" type="MenuItem">
+                                    <param id="0" name="Instance variable">ID</param>
+                                    <param id="1" name="Value">4</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="843817612505690" type="MenuItem">
+                                    <param id="0" name="Instance variable">Text</param>
+                                    <param id="1" name="Value">&quot;Disable Post Processing&quot;</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="908156998403517" type="MenuItem">
+                                    <param id="0" name="Instance variable">Action</param>
+                                    <param id="1" name="Value">&quot;Enable Post Processing&quot;</param>
+                                </action>
+                                <action id="1" name="Set return value" sid="109265510162177" type="Function">
+                                    <param id="0" name="Value">MenuItem.UID</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="453232086117231" type="System">
+                                    <param id="0" name="Object to create">DefaultFont</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">MenuItem.X + 32</param>
+                                    <param id="3" name="Y">MenuItem.Y</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="727740107021684" type="DefaultFont">
+                                    <param id="0" name="Width">512</param>
+                                    <param id="1" name="Height">96</param>
+                                </action>
+                                <action id="2" name="Set scale" sid="277540592668530" type="DefaultFont">
+                                    <param id="0" name="Scale">2</param>
+                                </action>
+                                <action id="0" name="Set text" sid="554534145878707" type="DefaultFont">
+                                    <param id="0" name="Text">MenuItem.Text</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="768500129342574" type="DefaultFont">
+                                    <param id="0" name="Instance variable">Name</param>
+                                    <param id="1" name="Value">&quot;Menu&quot; &amp; MenuItem.ID</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="544013253295380" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="251858958191997" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="287592848049418" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
                         <event-block sid="526089199327761">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="221445382417355" type="System">
-                                    <param id="0" name="Variable">Dev_Mode</param>
+                                    <param id="0" name="Variable">S_Dev_Mode</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -1066,14 +1184,14 @@
                             <actions>
                                 <action id="0" name="Call function" sid="530814222737384" type="Function">
                                     <param id="0" name="Name">&quot;CreateMenuItem&quot;</param>
-                                    <param id="1" name="Parameter {n}">0{###}192{###}224{###}4{###}&quot;Dev Mode&quot;{###}&quot;Dev Mode On&quot;</param>
+                                    <param id="1" name="Parameter {n}">0{###}192{###}256{###}5{###}&quot;Dev Mode&quot;{###}&quot;Dev Mode On&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
                         <event-block sid="111136214235915">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="405226648840330" type="System">
-                                    <param id="0" name="Variable">Dev_Mode</param>
+                                    <param id="0" name="Variable">S_Dev_Mode</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">1</param>
                                 </condition>
@@ -1083,11 +1201,11 @@
                                     <param id="0" name="Object to create">MenuItem</param>
                                     <param id="1" name="Layer">0</param>
                                     <param id="2" name="X">192</param>
-                                    <param id="3" name="Y">224</param>
+                                    <param id="3" name="Y">256</param>
                                 </action>
                                 <action id="-10" name="Set value" sid="470629776103755" type="MenuItem">
                                     <param id="0" name="Instance variable">ID</param>
-                                    <param id="1" name="Value">4</param>
+                                    <param id="1" name="Value">5</param>
                                 </action>
                                 <action id="-10" name="Set value" sid="924132887257644" type="MenuItem">
                                     <param id="0" name="Instance variable">Text</param>
@@ -1188,7 +1306,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Set text" sid="904538393597237" type="DefaultFont">
-                                            <param id="0" name="Text">&quot;&quot;</param>
+                                            <param id="0" name="Text">&quot;Take a guess.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -1202,7 +1320,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Set text" sid="180462058715313" type="DefaultFont">
-                                            <param id="0" name="Text">&quot;Removes the dying animation.&quot;</param>
+                                            <param id="0" name="Text">&quot;Skips the dying animation.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -1216,20 +1334,34 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Set text" sid="558162892974333" type="DefaultFont">
-                                            <param id="0" name="Text">&quot;Automatically tries again after dying.&quot;</param>
+                                            <param id="0" name="Text">&quot;Automatically restarts after dying.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block sid="760992377241560">
+                                <event-block sid="260092213865148">
                                     <conditions>
-                                        <condition id="0" name="Compare at X" sid="158453983554045" type="MenuStack">
+                                        <condition id="0" name="Compare at X" sid="945999340868347" type="MenuStack">
                                             <param id="0" name="X">1</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">4</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Set text" sid="494271195606606" type="DefaultFont">
+                                        <action id="0" name="Set text" sid="947142021625683" type="DefaultFont">
+                                            <param id="0" name="Text">&quot;Disables the post processing effects.&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="627401718615182">
+                                    <conditions>
+                                        <condition id="0" name="Compare at X" sid="937004187057874" type="MenuStack">
+                                            <param id="0" name="X">1</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">5</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" sid="966915013889769" type="DefaultFont">
                                             <param id="0" name="Text">&quot;Prints mouse cursor&apos;s coordinates in the top right corner and you can toggle time with &apos;V&apos;&quot;</param>
                                         </action>
                                     </actions>
@@ -1280,7 +1412,7 @@
                         <event-block sid="267237831559337">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="355109446970320" type="System">
-                                    <param id="0" name="Variable">HardMode</param>
+                                    <param id="0" name="Variable">S_HardMode</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -1294,11 +1426,7 @@
                         </event-block>
                         <event-block sid="478231627468054">
                             <conditions>
-                                <condition id="-14" name="Compare variable" sid="178245224805384" type="System">
-                                    <param id="0" name="Variable">HardMode</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">1</param>
-                                </condition>
+                                <condition id="-22" name="Else" sid="423223926774166" type="System" />
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" sid="738795217125420" type="System">
@@ -1362,9 +1490,9 @@
                         <event-block sid="264587871222405">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="743669064295306" type="System">
-                                    <param id="0" name="Variable">MaxHP</param>
+                                    <param id="0" name="Variable">S_No_Hit</param>
                                     <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">92</param>
+                                    <param id="2" name="Value">0</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -1376,11 +1504,7 @@
                         </event-block>
                         <event-block sid="806283882210167">
                             <conditions>
-                                <condition id="-14" name="Compare variable" sid="561045218646372" type="System">
-                                    <param id="0" name="Variable">MaxHP</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">1</param>
-                                </condition>
+                                <condition id="-22" name="Else" sid="561045218646372" type="System" />
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" sid="166656104855598" type="System">
@@ -1444,7 +1568,7 @@
                         <event-block sid="778002655205139">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="352528011711040" type="System">
-                                    <param id="0" name="Variable">NoDeath</param>
+                                    <param id="0" name="Variable">S_NoDeath</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -1458,11 +1582,7 @@
                         </event-block>
                         <event-block sid="625056311003284">
                             <conditions>
-                                <condition id="-14" name="Compare variable" sid="482109001644959" type="System">
-                                    <param id="0" name="Variable">NoDeath</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">1</param>
-                                </condition>
+                                <condition id="-22" name="Else" sid="482109001644959" type="System" />
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" sid="705262036053000" type="System">
@@ -1526,7 +1646,7 @@
                         <event-block sid="859315023313496">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="575881657882172" type="System">
-                                    <param id="0" name="Variable">HealPhaseTransition</param>
+                                    <param id="0" name="Variable">S_HealPhaseTransition</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -1540,11 +1660,7 @@
                         </event-block>
                         <event-block sid="947351869900946">
                             <conditions>
-                                <condition id="-14" name="Compare variable" sid="621771795530757" type="System">
-                                    <param id="0" name="Variable">HealPhaseTransition</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">1</param>
-                                </condition>
+                                <condition id="-22" name="Else" sid="298476593557515" type="System" />
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" sid="346128750596128" type="System">
@@ -1608,7 +1724,7 @@
                         <event-block sid="975272323351497">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="673026434489630" type="System">
-                                    <param id="0" name="Variable">HpHide</param>
+                                    <param id="0" name="Variable">S_HpHide</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -1622,11 +1738,7 @@
                         </event-block>
                         <event-block sid="465553239178303">
                             <conditions>
-                                <condition id="-14" name="Compare variable" sid="763477527368459" type="System">
-                                    <param id="0" name="Variable">HpHide</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">1</param>
-                                </condition>
+                                <condition id="-22" name="Else" sid="600780735446997" type="System" />
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" sid="214550087692790" type="System">
@@ -1728,59 +1840,59 @@
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block sid="510281312932680">
+                                <event-block sid="161629252710700">
                                     <conditions>
-                                        <condition id="0" name="Compare at X" sid="629266839749257" type="MenuStack">
+                                        <condition id="0" name="Compare at X" sid="764378471492330" type="MenuStack">
                                             <param id="0" name="X">2</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">1</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Set text" sid="711301624340359" type="DefaultFont">
-                                            <param id="0" name="Text">&quot;Changes your max HP to 1.&quot;</param>
+                                        <action id="0" name="Set text" sid="241438136302188" type="DefaultFont">
+                                            <param id="0" name="Text">&quot;You get killed in one hit.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block sid="629084007310699">
+                                <event-block sid="455839369615086">
                                     <conditions>
-                                        <condition id="0" name="Compare at X" sid="650568735608621" type="MenuStack">
+                                        <condition id="0" name="Compare at X" sid="402350273155900" type="MenuStack">
                                             <param id="0" name="X">2</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">2</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Set text" sid="828555655246172" type="DefaultFont">
-                                            <param id="0" name="Text">&quot;Removes dying.&quot;</param>
+                                        <action id="0" name="Set text" sid="186304468900924" type="DefaultFont">
+                                            <param id="0" name="Text">&quot;You won&apos;t die when reaching 0 HP.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block sid="853090518485752">
+                                <event-block sid="593912686489555">
                                     <conditions>
-                                        <condition id="0" name="Compare at X" sid="145073103681177" type="MenuStack">
+                                        <condition id="0" name="Compare at X" sid="273932104212820" type="MenuStack">
                                             <param id="0" name="X">2</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">3</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Set text" sid="257681860826958" type="DefaultFont">
-                                            <param id="0" name="Text">&quot;Heals you to max HP and restores all your items when reaching phase 2.&quot;</param>
+                                        <action id="0" name="Set text" sid="930571843744722" type="DefaultFont">
+                                            <param id="0" name="Text">&quot;Heals you to full and restores all your items when reaching phase 2.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block sid="495775108695290">
+                                <event-block sid="848332858740174">
                                     <conditions>
-                                        <condition id="0" name="Compare at X" sid="384382211568794" type="MenuStack">
+                                        <condition id="0" name="Compare at X" sid="544628672547671" type="MenuStack">
                                             <param id="0" name="X">2</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">4</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Set text" sid="665242991413274" type="DefaultFont">
-                                            <param id="0" name="Text">&quot;HP cannot be seen.&quot;</param>
+                                        <action id="0" name="Set text" sid="521743815396497" type="DefaultFont">
+                                            <param id="0" name="Text">&quot;Makes you unable to see your remaining HP.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -1796,7 +1908,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="169214443433202" type="System">
-                            <param id="0" name="Variable">HealPhaseTransition</param>
+                            <param id="0" name="Variable">S_HealPhaseTransition</param>
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="0" name="Call function" sid="447205260444368" type="Function">
@@ -1817,7 +1929,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="661022692709040" type="System">
-                            <param id="0" name="Variable">HealPhaseTransition</param>
+                            <param id="0" name="Variable">S_HealPhaseTransition</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action id="0" name="Call function" sid="921276517113687" type="Function">
@@ -1838,7 +1950,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="400434092108199" type="System">
-                            <param id="0" name="Variable">HpHide</param>
+                            <param id="0" name="Variable">S_HpHide</param>
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="0" name="Call function" sid="446222069421503" type="Function">
@@ -1859,7 +1971,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="465519349331108" type="System">
-                            <param id="0" name="Variable">HpHide</param>
+                            <param id="0" name="Variable">S_HpHide</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action id="0" name="Call function" sid="205403473993720" type="Function">
@@ -1880,7 +1992,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="754662521232235" type="System">
-                            <param id="0" name="Variable">HardMode</param>
+                            <param id="0" name="Variable">S_HardMode</param>
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="7" name="Reverse" sid="690822444441395" type="AttackLoader">
@@ -1904,7 +2016,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="683513547029804" type="System">
-                            <param id="0" name="Variable">HardMode</param>
+                            <param id="0" name="Variable">S_HardMode</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action id="7" name="Reverse" sid="755696490787198" type="AttackLoader">
@@ -1927,8 +2039,12 @@
                         </condition>
                     </conditions>
                     <actions>
+                        <action id="-9" name="Set value" sid="115091183219084" type="System">
+                            <param id="0" name="Variable">S_No_Hit</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
                         <action id="-9" name="Set value" sid="193347405117366" type="System">
-                            <param id="0" name="Variable">NoDeath</param>
+                            <param id="0" name="Variable">S_NoDeath</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action id="-9" name="Set value" sid="303595038571771" type="System">
@@ -1956,6 +2072,10 @@
                         </condition>
                     </conditions>
                     <actions>
+                        <action id="-9" name="Set value" sid="153489636881618" type="System">
+                            <param id="0" name="Variable">S_No_Hit</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
                         <action id="-9" name="Set value" sid="486981905352235" type="System">
                             <param id="0" name="Variable">MaxHP</param>
                             <param id="1" name="Value">92</param>
@@ -1982,11 +2102,11 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="420563363897906" type="System">
-                            <param id="0" name="Variable">NoDeath</param>
+                            <param id="0" name="Variable">S_NoDeath</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action id="-9" name="Set value" sid="501266204165448" type="System">
-                            <param id="0" name="Variable">InstantDeath</param>
+                            <param id="0" name="Variable">S_InstantDeath</param>
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="0" name="Call function" sid="897627968462744" type="Function">
@@ -2007,7 +2127,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="781889609089107" type="System">
-                            <param id="0" name="Variable">InstantDeath</param>
+                            <param id="0" name="Variable">S_InstantDeath</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action id="0" name="Call function" sid="367448104246899" type="Function">
@@ -2028,11 +2148,11 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="359490949204096" type="System">
-                            <param id="0" name="Variable">NoDeath</param>
+                            <param id="0" name="Variable">S_NoDeath</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action id="-9" name="Set value" sid="288356998346741" type="System">
-                            <param id="0" name="Variable">InstantRetry</param>
+                            <param id="0" name="Variable">S_InstantRetry</param>
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="0" name="Call function" sid="609848248536623" type="Function">
@@ -2053,7 +2173,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="298423072460011" type="System">
-                            <param id="0" name="Variable">InstantRetry</param>
+                            <param id="0" name="Variable">S_InstantRetry</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action id="0" name="Call function" sid="951598157855071" type="Function">
@@ -2074,7 +2194,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="963628175687638" type="System">
-                            <param id="0" name="Variable">Dev_Mode</param>
+                            <param id="0" name="Variable">S_Dev_Mode</param>
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="0" name="Call function" sid="400283273625736" type="Function">
@@ -2095,7 +2215,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="428721866204113" type="System">
-                            <param id="0" name="Variable">Dev_Mode</param>
+                            <param id="0" name="Variable">S_Dev_Mode</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action id="0" name="Call function" sid="776994210569304" type="Function">
@@ -2103,6 +2223,64 @@
                             <param id="1" name="Parameter {n}">&quot;Settings&quot;</param>
                         </action>
                         <action id="0" name="Call function" sid="223356095945249" type="Function">
+                            <param id="0" name="Name">&quot;Settings&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="281585369732163">
+                    <conditions>
+                        <condition id="0" name="On function" sid="745710638354524" type="Function">
+                            <param id="0" name="Name">&quot;Disable Post Processing&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="671701741541469" type="System">
+                            <param id="0" name="Variable">S_Disable_Post_Processing</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-29" name="Set layout effect enabled" sid="250911687917032" type="System">
+                            <param id="0" name="Mode">0</param>
+                            <param id="1" name="Effect">&quot;GlowHorizontal&quot;</param>
+                        </action>
+                        <action id="-29" name="Set layout effect enabled" sid="532434699022950" type="System">
+                            <param id="0" name="Mode">0</param>
+                            <param id="1" name="Effect">&quot;GlowVertical&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="217842748991002" type="Function">
+                            <param id="0" name="Name">&quot;MenuBackAction&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;Settings&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="785173713861500" type="Function">
+                            <param id="0" name="Name">&quot;Settings&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="478098981459013">
+                    <conditions>
+                        <condition id="0" name="On function" sid="318485493737020" type="Function">
+                            <param id="0" name="Name">&quot;Enable Post Processing&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="811283634773008" type="System">
+                            <param id="0" name="Variable">S_Disable_Post_Processing</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-29" name="Set layout effect enabled" sid="343907490473713" type="System">
+                            <param id="0" name="Mode">1</param>
+                            <param id="1" name="Effect">&quot;GlowHorizontal&quot;</param>
+                        </action>
+                        <action id="-29" name="Set layout effect enabled" sid="363495081396915" type="System">
+                            <param id="0" name="Mode">1</param>
+                            <param id="1" name="Effect">&quot;GlowVertical&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="353468391679657" type="Function">
+                            <param id="0" name="Name">&quot;MenuBackAction&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;Settings&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="832786666246834" type="Function">
                             <param id="0" name="Name">&quot;Settings&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
                         </action>
@@ -2116,11 +2294,11 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="529907975056911" type="System">
-                            <param id="0" name="Variable">InstantDeath</param>
+                            <param id="0" name="Variable">S_InstantDeath</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action id="-9" name="Set value" sid="190274895352526" type="System">
-                            <param id="0" name="Variable">InstantRetry</param>
+                            <param id="0" name="Variable">S_InstantRetry</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action id="-9" name="Set value" sid="541793940432033" type="System">
@@ -2132,7 +2310,7 @@
                             <param id="1" name="Value">92</param>
                         </action>
                         <action id="-9" name="Set value" sid="915830157079838" type="System">
-                            <param id="0" name="Variable">NoDeath</param>
+                            <param id="0" name="Variable">S_NoDeath</param>
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="0" name="Call function" sid="383559474247561" type="Function">
@@ -2157,7 +2335,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="480602622270752" type="System">
-                            <param id="0" name="Variable">NoDeath</param>
+                            <param id="0" name="Variable">S_NoDeath</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action id="0" name="Call function" sid="455574617890846" type="Function">
@@ -2182,7 +2360,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="277158404175238" type="System">
-                            <param id="0" name="Variable">Mute_Music</param>
+                            <param id="0" name="Variable">S_Mute_Music</param>
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="0" name="Call function" sid="726327207207324" type="Function">
@@ -2203,7 +2381,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="708840818242704" type="System">
-                            <param id="0" name="Variable">Mute_Music</param>
+                            <param id="0" name="Variable">S_Mute_Music</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action id="0" name="Call function" sid="590531637028218" type="Function">
@@ -2261,7 +2439,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Set text" sid="779665135901632" type="DefaultFont">
-                                            <param id="0" name="Text">&quot;&quot;</param>
+                                            <param id="0" name="Text">&quot;Take a guess.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -2274,8 +2452,8 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Set text" sid="611002462470475" type="DefaultFont">
-                                            <param id="0" name="Text">&quot;Removes the dying animation.&quot;</param>
+                                        <action id="0" name="Set text" sid="208595376981670" type="DefaultFont">
+                                            <param id="0" name="Text">&quot;Skips the dying animation.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -2289,7 +2467,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Set text" sid="761038312750363" type="DefaultFont">
-                                            <param id="0" name="Text">&quot;Automatically tries again after dying.&quot;</param>
+                                            <param id="0" name="Text">&quot;Automatically restarts after dying.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -2303,6 +2481,20 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Set text" sid="866718585227026" type="DefaultFont">
+                                            <param id="0" name="Text">&quot;Disables the post processing effects.&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="699202001763995">
+                                    <conditions>
+                                        <condition id="0" name="Compare at X" sid="374798524062464" type="MenuStack">
+                                            <param id="0" name="X">1</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">5</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" sid="225312768653205" type="DefaultFont">
                                             <param id="0" name="Text">&quot;Prints mouse cursor&apos;s coordinates in the top right corner and you can toggle time with &apos;V&apos;&quot;</param>
                                         </action>
                                     </actions>
@@ -2331,7 +2523,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Set text" sid="449305572840825" type="DefaultFont">
-                                            <param id="0" name="Text">&quot;Changes your max HP to 1.&quot;</param>
+                                            <param id="0" name="Text">&quot;You get killed in one hit.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -2345,7 +2537,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Set text" sid="582234228122388" type="DefaultFont">
-                                            <param id="0" name="Text">&quot;Removes dying.&quot;</param>
+                                            <param id="0" name="Text">&quot;You won&apos;t die when reaching 0 HP.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -2373,7 +2565,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Set text" sid="990971371820360" type="DefaultFont">
-                                            <param id="0" name="Text">&quot;HP cannot be seen.&quot;</param>
+                                            <param id="0" name="Text">&quot;Makes you unable to see your remaining HP.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -2474,7 +2666,7 @@
                         <event-block sid="777013480077450">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="974613947400603" type="System">
-                                    <param id="0" name="Variable">HardMode</param>
+                                    <param id="0" name="Variable">S_HardMode</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
@@ -2541,7 +2733,7 @@
                         <event-block sid="578524950635548">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="574054889795125" type="System">
-                                    <param id="0" name="Variable">HardMode</param>
+                                    <param id="0" name="Variable">S_HardMode</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">1</param>
                                 </condition>

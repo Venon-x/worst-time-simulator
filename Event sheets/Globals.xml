@@ -20,5 +20,17 @@
         <variable constant="0" name="KR" sid="2189987320058474" static="0" type="number">0</variable>
         <variable constant="0" name="KR_T" sid="8948293770944489" static="0" type="number">0</variable>
         <variable constant="0" name="KR_T2" sid="286950799015516" static="0" type="number">0</variable>
+        <variable constant="0" name="HasNoHit" sid="347891215231684" static="0" type="number">1</variable>
+        <variable constant="0" name="PhaseSelect" sid="723293063805534" static="0" type="number">0</variable>
+        <variable constant="0" name="S_No_Hit" sid="241167062336600" static="0" type="number">0</variable>
+        <variable constant="0" name="S_HpHide" sid="984971955993258" static="0" type="number">0</variable>
+        <variable constant="0" name="S_InstantRetry" sid="631666650306170" static="0" type="number">0</variable>
+        <variable constant="0" name="S_HardMode" sid="558242018309688" static="0" type="number">0</variable>
+        <variable constant="0" name="S_HealPhaseTransition" sid="889065065535002" static="0" type="number">0</variable>
+        <variable constant="0" name="S_NoDeath" sid="801429008754939" static="0" type="number">0</variable>
+        <variable constant="0" name="S_InstantDeath" sid="793288806843850" static="0" type="number">0</variable>
+        <variable constant="0" name="S_Mute_Music" sid="173553545395958" static="0" type="number">0</variable>
+        <variable constant="0" name="S_Disable_Post_Processing" sid="143288802474549" static="0" type="number">0</variable>
+        <variable constant="0" name="S_Dev_Mode" sid="198993641771020" static="0" type="number">0</variable>
     </events>
 </c2eventsheet>
